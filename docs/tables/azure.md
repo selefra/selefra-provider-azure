@@ -1,4 +1,4 @@
-# Provider: azure
+# Provider: Azure
 
 ## Latest Version 
 
@@ -11,7 +11,7 @@ v0.0.1
 # Install 
 
 ```
-selefre  provider install azure
+selefra provider install azure
 ```
 
 
