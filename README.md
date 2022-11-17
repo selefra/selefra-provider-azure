@@ -2,7 +2,7 @@
 
 Use this repo as a raw reference to **tables and schema** for Azure cloud resources. [Here's](https://github.com/selefra/selefra-provider-azure/blob/main/docs/tables/azure.md) a summary of full coverage. 
 As an experienced user, the tables are especially helpful when you're writing SQL queries for specific task. 
-If you're just starting, navigate to our dodcumentation for example usage.
+If you're just starting, navigate to our documentation for example usage.
  
 ## Documentation
 
