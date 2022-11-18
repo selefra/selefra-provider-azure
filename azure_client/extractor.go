@@ -25,6 +25,9 @@ func ExtractorAzureDateTime(col string) schema.ColumnValueExtractor {
 		if err != nil && err.HasError() {
 			return nil, err
 		}
+		if reflect_util.IsNil(value) {
+			return time.Time{}, nil
+		}
 		switch v := value.(type) {
 		case *date.Time:
 			return v.ToTime(), nil
