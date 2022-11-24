@@ -374,6 +374,8 @@ github.com/selefra/selefra-provider-sdk v0.0.13-0.20221118084250-f28f68872e08 h1
 github.com/selefra/selefra-provider-sdk v0.0.13-0.20221118084250-f28f68872e08/go.mod h1:tC+IhN2fCXLn9jbdEodgOB1CX3640m79+pno+lWiG2Y=
 github.com/selefra/selefra-provider-sdk v0.0.13-0.20221118085137-c3a697700763 h1:Z1ZV2gZtcTkq/1cuks/977efqkjFtnvDTZN/CNlGKqA=
 github.com/selefra/selefra-provider-sdk v0.0.13-0.20221118085137-c3a697700763/go.mod h1:tC+IhN2fCXLn9jbdEodgOB1CX3640m79+pno+lWiG2Y=
+github.com/selefra/selefra-provider-sdk v0.0.14-0.20221123095527-f765fc999594 h1:s1R5qW8j8XI1NfF3nWqexrrMBJ/GHl+R/tjwfcoV6FE=
+github.com/selefra/selefra-provider-sdk v0.0.14-0.20221123095527-f765fc999594/go.mod h1:tC+IhN2fCXLn9jbdEodgOB1CX3640m79+pno+lWiG2Y=
 github.com/selefra/selefra-utils v0.0.2 h1:Z3cAmMoTr6XePiZJakRmLVi7CvMjZ4ypt8TO73M03F0=
 github.com/selefra/selefra-utils v0.0.2/go.mod h1:LPY6RNU12IniRH3xz7yS7xF10YH3emQ6NWrn6UuBjEk=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24/go.mod h1:M+9NzErvs504Cn4c5DxATwIqPbtswREoFCre64PpcG4=
