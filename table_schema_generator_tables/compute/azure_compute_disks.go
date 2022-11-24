@@ -3,10 +3,11 @@ package compute
 import (
 	"context"
 
-	"github.com/selefra/selefra-provider-azure/azure_client"
-	"github.com/selefra/selefra-provider-azure/table_schema_generator"
 	"github.com/selefra/selefra-provider-sdk/provider/schema"
 	"github.com/selefra/selefra-provider-sdk/provider/transformer/column_value_extractor"
+
+	"github.com/selefra/selefra-provider-azure/azure_client"
+	"github.com/selefra/selefra-provider-azure/table_schema_generator"
 )
 
 type TableAzureComputeDisksGenerator struct {
@@ -68,7 +69,7 @@ func (x *TableAzureComputeDisksGenerator) GetColumns() []*schema.Column {
 		table_schema_generator.NewColumnBuilder().ColumnName("disk_state").ColumnType(schema.ColumnTypeString).Build(),
 		table_schema_generator.NewColumnBuilder().ColumnName("security_profile").ColumnType(schema.ColumnTypeJSON).Build(),
 		table_schema_generator.NewColumnBuilder().ColumnName("name").ColumnType(schema.ColumnTypeString).Build(),
-		table_schema_generator.NewColumnBuilder().ColumnName("disk_size_bytes").ColumnType(schema.ColumnTypeInt).Build(),
+		table_schema_generator.NewColumnBuilder().ColumnName("disk_size_bytes").ColumnType(schema.ColumnTypeBigInt).Build(),
 		table_schema_generator.NewColumnBuilder().ColumnName("encryption").ColumnType(schema.ColumnTypeJSON).Build(),
 		table_schema_generator.NewColumnBuilder().ColumnName("type").ColumnType(schema.ColumnTypeString).Build(),
 		table_schema_generator.NewColumnBuilder().ColumnName("tags").ColumnType(schema.ColumnTypeJSON).Build(),
