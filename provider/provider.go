@@ -39,8 +39,13 @@ func GetProvider() *provider.Provider {
 					return nil, schema.NewDiagnostics().AddErrorMsg("account information not found")
 				}
 
+				hash := make(map[string]bool)
 				res := make([]interface{}, 0, len(clients))
 				for i := range clients {
+					if hash[clients[i].ClientID] {
+						continue
+					}
+					hash[clients[i].ClientID] = true
 					res = append(res, clients[i])
 				}
 				return res, nil
