@@ -4,12 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/Azure/azure-sdk-for-go/services/subscription/mgmt/2020-09-01/subscription"
+	"github.com/Azure/go-autorest/autorest"
 	_ "github.com/Azure/go-autorest/autorest"
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 
@@ -17,6 +19,7 @@ import (
 )
 
 type Client struct {
+	ClientID       string
 	subscriptions  []string
 	SubscriptionId string
 	services       map[string]*services.Services
@@ -52,12 +55,32 @@ func NewClients(configs Configs) ([]*Client, error) {
 }
 
 func newClient(config Config) (*Client, error) {
-	azureAuth, err := auth.NewAuthorizerFromEnvironment()
-	if err != nil {
-		azureAuth, err = auth.NewAuthorizerFromCLI()
-		if err != nil {
-			return nil, err
+
+	var azureAuth autorest.Authorizer
+	var err error
+	if config.FromFile != "" {
+		_ = os.Setenv("AZURE_AUTH_LOCATION", config.FromFile)
+		azureAuth, err = auth.NewAuthorizerFromFile(config.ResourceBaseURI)
+	} else {
+		if config.TenantID != "" {
+			_ = os.Setenv(auth.TenantID, config.TenantID)
 		}
+
+		if config.ClientID != "" {
+			_ = os.Setenv(auth.ClientID, config.ClientID)
+		}
+
+		if config.ClientSecret != "" {
+			_ = os.Setenv(auth.ClientSecret, config.ClientSecret)
+		}
+
+		azureAuth, err = auth.NewAuthorizerFromEnvironment()
+		if err != nil {
+			azureAuth, err = auth.NewAuthorizerFromCLI()
+		}
+	}
+	if err != nil {
+		return nil, err
 	}
 
 	var azCred azcore.TokenCredential
@@ -69,6 +92,7 @@ func newClient(config Config) (*Client, error) {
 		}
 	}
 	client := NewAzureClient(config.Subscriptions)
+	client.ClientID = os.Getenv(auth.ClientID)
 	if len(config.Subscriptions) == 0 {
 		ctx := context.Background()
 		svc := subscription.NewSubscriptionsClient()
