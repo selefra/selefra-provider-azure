@@ -41,17 +41,12 @@ func (c *Client) AzureServices() *services.Services {
 	return c.services[c.SubscriptionId]
 }
 
-func NewClients(configs Configs) ([]*Client, error) {
-	var clients []*Client
-
-	for _, c := range configs.Providers {
-		cls, err := newClient(c)
-		if err != nil {
-			return nil, err
-		}
-		clients = append(clients, cls)
+func NewClients(config Config) ([]*Client, error) {
+	client, err := newClient(config)
+	if err != nil {
+		return nil, err
 	}
-	return clients, nil
+	return []*Client{client}, nil
 }
 
 func newClient(config Config) (*Client, error) {

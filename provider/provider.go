@@ -19,13 +19,10 @@ func GetProvider() *provider.Provider {
 		TableList: GenTables(),
 		ClientMeta: schema.ClientMeta{
 			InitClient: func(ctx context.Context, clientMeta *schema.ClientMeta, config *viper.Viper) ([]any, *schema.Diagnostics) {
-				var azureConfig azure_client.Configs
+				var azureConfig azure_client.Config
 				err := config.Unmarshal(&azureConfig)
 				if err != nil {
 					return nil, schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
-				}
-				if len(azureConfig.Providers) == 0 {
-					azureConfig.Providers = append(azureConfig.Providers, azure_client.Config{})
 				}
 
 				clients, err := azure_client.NewClients(azureConfig)
@@ -65,7 +62,7 @@ func GetProvider() *provider.Provider {
 #    resource_base_uri: <resource_base_uri> # Optional, specify resource base url which can be found in the authorization file.`
 			},
 			Validation: func(ctx context.Context, config *viper.Viper) *schema.Diagnostics {
-				var azureConfig azure_client.Configs
+				var azureConfig azure_client.Config
 				err := config.Unmarshal(&azureConfig)
 				if err != nil {
 					return schema.NewDiagnostics().AddErrorMsg("analysis config err: %s", err.Error())
